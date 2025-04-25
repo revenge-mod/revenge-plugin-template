@@ -9,9 +9,9 @@ tasks {
         group = "build"
         description = "Runs Bun with arguments: ${args.joinToString(" ")}"
 
-        val bunCommand = if (Os.isFamily(Os.FAMILY_WINDOWS)) "bun.exe" else "${System.properties['user.home']}/.bun/bin/bun"
+        val bunCommand = if (Os.isFamily(Os.FAMILY_WINDOWS)) "bun.exe" else "${System.getProperty("user.home")}/.bun/bin/bun"
 
-        commandLine("bun", *args)
+        commandLine(bunCommand, *args)
     }
 
     val installDependencies by registeringBunTask("install")
