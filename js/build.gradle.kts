@@ -5,18 +5,17 @@ group = "io.github.revenge.plugin"
 
 
 tasks {
-    fun registeringNpmTask(vararg args: String) = registering(Exec::class) {
+    fun registeringBunTask(vararg args: String) = registering(Exec::class) {
         group = "build"
-        description = "Runs npm command with arguments: ${args.joinToString(" ")}"
+        description = "Runs Bun with arguments: ${args.joinToString(" ")}"
 
-        val npmCommand = if (Os.isFamily(Os.FAMILY_WINDOWS)) "npm.cmd" else "/usr/local/bin/npm"
+        val bunCommand = if (Os.isFamily(Os.FAMILY_WINDOWS)) "bun.exe" else "${System.properties['user.home']}/.bun/bin/bun"
 
-        workingDir("src")
-        commandLine(npmCommand, *args)
+        commandLine("bun", *args)
     }
 
-    val installDependencies by registeringNpmTask("install")
-    val build by registeringNpmTask("run", "build")
+    val installDependencies by registeringBunTask("install")
+    val build by registeringBunTask("run", "build")
 }
 
 configurations {

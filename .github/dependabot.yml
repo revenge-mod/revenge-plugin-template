@@ -7,7 +7,7 @@ updates:
     schedule:
       interval: monthly
 
-  - package-ecosystem: npm
+  - package-ecosystem: bun
     labels: []
     directory: /
     target-branch: dev

@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		// Features
+		"lib": ["ESNext"],
+		"module": "ESNext",
+		"target": "ES2015",
+		// Bundler
+		"moduleResolution": "bundler",
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+		// Type checking
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noPropertyAccessFromIndexSignature": false
+	}
+}

@@ -3,8 +3,6 @@ plugins {
     kotlin("android") version "2.0.0"
 }
 
-
-
 @Suppress("UnstableApiUsage")
 configurations {
     val jsDependencyScope by dependencyScope("jsDependencyScope")
@@ -54,7 +52,7 @@ android {
         named("main") {
             resources {
                 srcDir()
-               srcDir(configurations["jsConfiguration"])
+                srcDir(configurations["jsConfiguration"])
             }
         }
     }

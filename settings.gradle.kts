@@ -27,6 +27,6 @@ dependencyResolutionManagement {
 include(":js")
 include(":native")
 
-//plugins {
- //   id("io.github.revenge.plugin") version "1.0.0"
-//}
+// plugins {
+//     id("io.github.revenge.plugin") version "1.0.0"
+// }
