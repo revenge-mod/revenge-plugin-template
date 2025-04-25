@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react-native",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "paths": {
+      "shared:*": ["./shared/*"]
+    }
+  },
+  "include": [
+    "plugins",
+    "global.d.ts",
+    "modules.d.ts",
+    "shared",
+    "scripts",
+    "node_modules/vendetta-types"
+  ],
+  "exclude": ["dist"]
+}
