@@ -24,7 +24,7 @@ configurations {
         isCanBeResolved = false
         isCanBeConsumed = true
 
-        outgoing.artifact(layout.buildDirectory.dir("revanced")) {
+        outgoing.artifact(layout.buildDirectory.dir("revenge")) {
             builtBy(tasks.named("build"))
         }
     }

@@ -12,7 +12,6 @@ jobs:
     name: Release
     permissions:
       contents: write
-      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,22 +28,26 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Cache Gradle
         uses: burrunan/gradle-cache-action@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+            path: ~/.bun/install/cache
+            key: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles('**/bun.lockb') }}
+            restore-keys: |
+              ${{ runner.os }}-${{ matrix.bun }}-bun-
 
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build clean
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
@@ -53,7 +56,10 @@ jobs:
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
           fingerprint: ${{ vars.GPG_FINGERPRINT }}
 
+      - name: Install dependencies
+        run: bun install
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm exec semantic-release
+        run: bunx semantic-release

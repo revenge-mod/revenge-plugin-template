@@ -1,0 +1,5 @@
+{
+	"name": "revenge-plugins",
+	"private": true,
+	"packageManager": "bun@1.2.8"
+}
