@@ -62,9 +62,10 @@ Build one plugin, or only one part of it:
 ```sh
 ./gradlew packageExamplePlugin              # one plugin -> build/dist/<id>.zip
 ./gradlew :plugins:example-plugin:dexJar    # native only -> plugins/example-plugin/build/outputs/plugin/plugin.jar
+# replace bun with npm if you use node
 bun install                                 # install the dependencies
-npm run build                               # every JS bundle -> plugins/<name>/build/js/index.js
-npm run build example-plugin                # the JS bundle of one plugin
+bun run build                               # every JS bundle -> plugins/<name>/build/js/index.js
+bun run build example-plugin                # the JS bundle of one plugin
 ```
 
 Gradle derives each package task name from the folder name, example: `plugins/example-plugin/` gives `packageExamplePlugin`.
@@ -262,13 +263,13 @@ Build the ZIPs first, then start the dev server. The server regenerates the inde
 
 ```sh
 ./gradlew packageAllPlugins   # or one package task
-npm run serve                 # http://<your-lan-ip>:8080
+bun run serve                 # or npm if node http://<your-lan-ip>:8080
 ```
 
 Add the URL on the device as a repository. If the device cannot reach your IP, or if it blocks cleartext traffic, use loopback through ADB:
 
 ```sh
-npm run serve -- --base-url http://127.0.0.1:8080
+bun run serve -- --base-url http://127.0.0.1:8080
 adb reverse tcp:8080 tcp:8080
 ```
 
