@@ -263,7 +263,7 @@ Build the ZIPs first, then start the dev server. The server regenerates the inde
 
 ```sh
 ./gradlew packageAllPlugins   # or one package task
-bun run serve                 # or npm if node http://<your-lan-ip>:8080
+bun run serve                 # http://<your-lan-ip>:8080
 ```
 
 Add the URL on the device as a repository. If the device cannot reach your IP, or if it blocks cleartext traffic, use loopback through ADB:
