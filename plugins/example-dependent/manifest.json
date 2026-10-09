@@ -3,7 +3,7 @@
 	"id": "com.example.dependent",
 	"name": "Example Dependent",
 	"description": "Depends on Example Library. Also installs the library.",
-	"author": "Your Name",
+	"author": "Your Name <643945264868098049> (https://discord.com \"Website\")",
 	"version": "1.0.0",
 	"dependencies": {
 		"revenge.api": {

@@ -78,7 +78,8 @@ Gradle derives each package task name from the folder name, example: `plugins/ex
   "id": "com.example.plugin",       // also the folder name on disk
   "name": "Example Plugin",
   "description": "...",
-  "author": "Your Name",
+  "author": "Your Name <643945264868098049> (https://discord.com \"Website\")",  // see `author` below
+  "contributors": ["Someone Else <669627189624307712> (mailto:support@discord.com)", "Some Other Person"],  // optional, same format
   "version": "1.0.0",               // the version of this plugin. Required.
   "dependencies": {                 // keyed by plugin id
     "revenge.api": { "version": ">=1" },
@@ -93,6 +94,21 @@ Gradle derives each package task name from the folder name, example: `plugins/ex
   }
 }
 ```
+
+### `author` and `contributors`
+
+Both use an NPM-like format. Discord user IDs and links are optional and repeatable:
+
+```
+Name <DISCORD_ID_1> <DISCORD_ID_N> (LINK_1) (LINK_N "Optional label")
+```
+
+- Put every Discord ID before the first link.
+- Links must start with `https://`, `http://` or `mailto:`.
+- A plain `Your Name` is still valid.
+
+Revenge shows the author as a button that opens a sheet with everyone's profiles and links. Revenge only shows at most 5 IDs and 5 links per each person.
+Supplying contact information is optional. If the string does not follow the format, Revenge shows it as plain text.
 
 ### `version`
 

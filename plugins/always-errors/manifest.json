@@ -4,7 +4,7 @@
 	"name": "Always Errors",
 	"description": "A plugin that always throws errors.",
 	"icon": "CircleErrorIcon",
-	"author": "Your Name",
+	"author": "Your Name <643945264868098049> (https://discord.com \"Website\")",
 	"version": "1.0.0",
 	"dependencies": {
 		"revenge.api": {

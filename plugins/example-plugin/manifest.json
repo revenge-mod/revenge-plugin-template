@@ -3,7 +3,11 @@
 	"id": "com.example.plugin",
 	"name": "Example Plugin",
 	"description": "An example Revenge plugin built from the template.",
-	"author": "Your Name",
+	"author": "Your Name <643945264868098049> (https://discord.com \"Website\")",
+	"contributors": [
+		"Someone Else <669627189624307712> (mailto:support@discord.com)",
+		"Some Other Person"
+	],
 	"version": "1.0.0",
 	"dependencies": {
 		"revenge.api": {
