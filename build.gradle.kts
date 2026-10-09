@@ -309,6 +309,10 @@ pluginDefs.forEach { (dir, id, version, jarName, scriptName) ->
             }
         }
 
+        // Extra files the plugin reads at runtime (fonts, images), kept under `assets/` in the ZIP
+        val assets = File(dir, "assets")
+        if (assets.isDirectory) from(assets) { into("assets") }
+
         archiveFileName.set("$id@$version.zip")
         destinationDirectory.set(layout.buildDirectory.dir("dist"))
         doLast { logger.lifecycle("Packaged $id -> ${archiveFile.get().asFile.relativeTo(rootDir)}") }

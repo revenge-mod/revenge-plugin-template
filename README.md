@@ -17,6 +17,7 @@ A plugin is **JS-only** when it has only a JS entry file. A plugin can have both
 ```
 ├── plugins/
 │   ├── example-plugin/            # Native + JS
+│   │   ├── assets/test.txt        # assets, read using pluginDir
 │   │   ├── manifest.json          # id, metadata, dist.* paths
 │   │   ├── src/main/kotlin/com/example/plugin/MyPlugin.kt   # -> plugin.jar
 │   │   └── js/index.ts            # -> index.js

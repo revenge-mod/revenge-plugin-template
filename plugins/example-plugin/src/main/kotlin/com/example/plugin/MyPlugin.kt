@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import io.github.revenge.bridge.asDelegate
 import io.github.revenge.plugins.plugin
 import io.github.revenge.xposed.api.registerNativeMethod
+import java.io.File
 
 /**
  * Example native plugin entry point.
@@ -23,6 +24,9 @@ val myPlugin = plugin {
     // [this] is a PluginScope: log, manifest, appInfo, classLoader, bridge, etc.
     start {
         log.i("Loaded ${manifest.name} (${manifest.id}) in ${appInfo.packageName}")
+        
+        val file = File(pluginDir, "assets/test.txt")
+        log.i("Reading test.txt from plugin storage: ${file.readText()}")
 
         // Expose a native method callable from the plugin's JS side via the Revenge bridge.
         registerNativeMethod("${manifest.id}.ping") { args ->
