@@ -46,6 +46,17 @@ To add a plugin, create `plugins/<name>/manifest.json` and add a `src/main` fold
 
   The task publishes `io.github.revenge:api`. `gradle/libs.versions.toml` pins the version.
 
+### Fetching packages from GitHub Packages
+
+Revenge API is published to GitHub Packages. To fetch packages from GitHub Packages, you'll need to set up a **personal access token** with `read:packages`.
+
+This template requires you to put the token in your local Gradle properties file (`~/.gradle/gradle.properties`):
+
+```properties
+GitHubPackagesUsername=YOUR_GITHUB_USERNAME
+GitHubPackagesPassword=YOUR_PERSONAL_ACCESS_TOKEN
+```
+
 ## Build
 
 Build and package every plugin:
@@ -298,6 +309,10 @@ mislabeled artifact fails the build instead of entering the index under the wron
 Git tags and GitHub Releases are written for changelogs only. Nothing reads them.
 
 ### Automated releases
+
+> [!IMPORTANT]  
+> You'll need to setup a **personal access token** with `read:packages` and put it in **Repository Settings > Secrets and variables > Actions** as `READ_PACKAGES_TOKEN`.  
+> The workflows use it to download the Revenge API dependency. You may encounter a `401` error during build if you don't set it up.
 
 Two workflows publish the repository. The CLI holds the release logic, and it never talks to a Git
 host. Both workflows call it with local files. To port the repository to another host, you rewrite
