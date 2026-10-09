@@ -4,7 +4,7 @@ kotlin = "2.4.10"
 
 coroutines = "1.11.0"
 xposed = "82"
-revengeApi = "1.0.0"
+revengeApi = "1.1.0"
 
 compileSdk = "36"
 minSdk = "24"
