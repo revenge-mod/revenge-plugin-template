@@ -2,6 +2,8 @@ import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import groovy.json.JsonSlurper
 import java.io.File
+import java.nio.file.FileSystems
+import java.nio.file.Files
 import java.util.concurrent.Callable
 import javax.inject.Inject
 import org.gradle.process.ExecOperations
@@ -196,6 +198,10 @@ configure(subprojects.filter { it.path.startsWith(":plugins:") }) {
         )
         inputs.files(classDirs).withPropertyName("classDirs").optional()
 
+        // Java resources are packaged as-is, so the plugin can read them through its class loader.
+        val resources = fileTree("src/main/resources")
+        inputs.files(resources).withPropertyName("resources").optional()
+
         val outJar = layout.buildDirectory.file("outputs/plugin/plugin.jar")
         outputs.file(outJar).withPropertyName("dexJar")
 
@@ -227,6 +233,17 @@ configure(subprojects.filter { it.path.startsWith(":plugins:") }) {
                     *classFiles.map { it.absolutePath }.toTypedArray(),
                 )
             }
+
+            if (!resources.isEmpty) {
+                FileSystems.newFileSystem(out.toPath()).use { jar ->
+                    resources.visit {
+                        val target = jar.getPath(relativePath.pathString)
+                        if (isDirectory) Files.createDirectories(target)
+                        else Files.copy(file.toPath(), target)
+                    }
+                }
+            }
+
             logger.lifecycle("Dexed $path -> ${out.relativeTo(rootProject.projectDir)}")
         }
     }
