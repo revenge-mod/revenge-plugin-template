@@ -293,6 +293,15 @@ val buildJs = tasks.register("buildJs") {
     }
 }
 
+// Packaging always starts from an empty dist directory. Archive names only contain the
+// plugin id and version, so retaining a same-name archive would keep its old digest in the index.
+val cleanDist = tasks.register<Delete>("cleanDist") {
+    group = "revenge"
+    description = "Deletes packaged plugin archives so their digests are regenerated."
+    delete(layout.buildDirectory.dir("dist"))
+    outputs.upToDateWhen { false }
+}
+
 val packageAllPlugins = tasks.register("packageAllPlugins") {
     group = "revenge"
     description = "Builds and packages every plugin into build/dist/<id>@<version>.zip."
@@ -306,7 +315,7 @@ pluginDefs.forEach { (dir, id, version, jarName, scriptName) ->
     val pkg = tasks.register<Zip>("package${taskSuffix(dir.name)}") {
         group = "revenge"
         description = "Packages '$id' into a distributable ZIP."
-        dependsOn(buildJs)
+        dependsOn(buildJs, cleanDist)
         mustRunAfter(cleanTasks)
 
         from(File(dir, "manifest.json"))
