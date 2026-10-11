@@ -349,6 +349,14 @@ an empty pool and would republish every version.
 the pool and commits it when it changed. Use it after you edit the `repo.config.json` channel
 overrides, or after you delete an artifact to unpublish a version. Releasing does not need it.
 
+### PR validation security warning
+
+Pull requests from forks run in the context of the base repository. This workflow uses `pull_request_target`, which means it runs with the base repository's permissions and secrets.
+This can be a security risk if the workflow executes untrusted code from the fork. You should configure pull requests to require maintainer approval by going to **Settings > Actions > General**, and set **Require approval for all external contributors**.
+
+> [!NOTE]  
+> By default, validation will fail for pull requests from forks. To acknowledge the security warning and allow the workflow to run, you must set the `ACKNOWLEDGE_PR_SECURITY_WARNING` repository variable to `true` in your repository settings.
+
 
 ### Serve a repository on your machine
 
