@@ -19,6 +19,7 @@ A plugin is **JS-only** when it has only a JS entry file. A plugin can have both
 │   ├── example-plugin/            # Native + JS
 │   │   ├── assets/test.txt        # assets, read using pluginDir
 │   │   ├── manifest.json          # id, metadata, dist.* paths
+│   │   ├── tsconfig.json          # the plugin's own type-check project
 │   │   ├── src/main/kotlin/com/example/plugin/MyPlugin.kt   # -> plugin.jar
 │   │   └── js/index.ts            # -> index.js
 │   ├── example-js-plugin/         # JS-only: no src/main, no dist.android
@@ -32,6 +33,15 @@ The bundler looks for the JS entry in this order: `js/index.*`, then `src/index.
 Each step accepts `.ts`, `.tsx`, `.js` and `.jsx`.
 
 To add a plugin, create `plugins/<name>/manifest.json` and add a `src/main` folder for native code, a JS entry file, or both.
+
+Give each plugin a `tsconfig.json` that extends the shared settings:
+
+```json
+{ "extends": "../../tsconfig.base.json" }
+```
+
+Each plugin is type-checked as its own project, so types one plugin adds, such as a dependency's API types
+or hidden types, don't leak into other plugins. A plugin without a `tsconfig.json` isn't type-checked.
 
 ## Prerequisites
 
