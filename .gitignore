@@ -2,6 +2,7 @@
 .gradle/
 build/
 plugins/*/build/
+themes/*/build/
 local.properties
 .kotlin/
 

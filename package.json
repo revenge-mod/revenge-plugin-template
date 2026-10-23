@@ -6,16 +6,17 @@
 		"build": "revenge-plugin build",
 		"build:dev": "revenge-plugin build --dev",
 		"generate-index": "revenge-plugin generate-index",
-		"plan-releases": "revenge-plugin plan-releases",
+		"plan-releases": "revenge-plugin plan-releases --plugins-dir plugins --plugins-dir themes",
 		"serve": "revenge-plugin serve",
 		"lint": "biome check",
-		"lint:types": "tsc -b plugins/*/tsconfig.json && tsc -p cli --noEmit"
+		"lint:types": "tsc -b plugins/*/tsconfig.json themes/*/tsconfig.json && tsc -p cli --noEmit"
 	},
 	"dependencies": {
 		"@revenge-mod/devtools-client": "^1.4.0",
 		"@revenge-mod/devtools-shared": "^1.3.0",
 		"@revenge-mod/plugin-cli": "git+https://github.com/revenge-mod/revenge-plugin-cli.git",
-		"@revenge-mod/types": "git+https://github.com/revenge-mod/revenge-types.git"
+		"@revenge-mod/types": "git+https://github.com/revenge-mod/revenge-types.git",
+		"@revenge-mod/themes-api": "git+https://github.com/revenge-mod/revenge-themes-types.git"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.12",

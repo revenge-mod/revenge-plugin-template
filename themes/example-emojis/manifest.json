@@ -1,0 +1,22 @@
+{
+	"format": 1,
+	"id": "com.example.emojis",
+	"name": "Example Emojis",
+	"description": "Example emoji packs for Revenge.",
+	"author": "Your Name",
+	"version": "1.0.0",
+	"dependencies": {
+		"revenge.api": {
+			"version": ">=1.2.1 <2"
+		},
+		"discord": {
+			"version": "*"
+		},
+		"revenge.api.themes": {
+			"version": "*"
+		}
+	},
+	"dist": {
+		"script": "index.js"
+	}
+}

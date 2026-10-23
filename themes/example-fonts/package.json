@@ -1,0 +1,6 @@
+{
+	"name": "@revenge-mod/google-sans-flex",
+	"devDependencies": {
+		"@revenge-mod/themes-api": "workspace:*"
+	}
+}
