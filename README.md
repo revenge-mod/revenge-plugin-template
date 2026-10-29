@@ -3,6 +3,10 @@
 This repository is a starter monorepo for external Revenge plugins. Each plugin becomes one ZIP
 file. One repository can hold any number of plugins under `plugins/`, and theme plugins under `themes/`.
 
+> [!IMPORTANT]  
+> **Revenge Next is now discontinued.** Thank you to all the people who've tried this out.
+> Works of Revenge Next have now been moved to [Valenced](https://github.com/Valenced/valenced). A brand new Discord mobile client modification.
+
 A plugin has up to three parts. Its own `manifest.json` declares all of them:
 
 - **`dist.android`** is native Kotlin code. The build compiles it to a DEXed JAR, and the plugin loader loads it with `DexClassLoader`.
